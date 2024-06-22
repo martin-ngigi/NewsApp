@@ -1,6 +1,10 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.compose.compiler)
+    id("com.google.dagger.hilt.android")
+    id("org.jetbrains.kotlin.plugin.serialization")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -66,4 +70,41 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    //Splash Api
+    implementation(libs.androidx.core.splashscreen)
+
+    //Compose Navigation
+    implementation(libs.navigation.compose)
+
+    //Dagger Hilt
+    implementation(libs.dagger.hilt)
+    ksp(libs.dagger.hilt.compiler)
+    implementation(libs.dagger.hilt.compose)
+
+    //Retrofit
+    implementation(libs.retrofit2.retrofit)
+    implementation(libs.retrofit2.converter.gson)
+
+    //Coil
+    implementation(libs.coil.compose)
+
+    //Datastore
+    implementation(libs.datastore.preferences)
+
+    //Compose Foundation
+    implementation(libs.compose.foundation)
+
+    //Accompanist
+    implementation(libs.accompanist.systemuicontroller)
+
+    //Paging 3
+    implementation(libs.paging.runtime)
+    implementation(libs.paging.compose)
+
+    //Room
+    implementation(libs.room.runtime)
+    ksp(libs.room.compiler)
+    implementation(libs.room.ktx)
+
 }
