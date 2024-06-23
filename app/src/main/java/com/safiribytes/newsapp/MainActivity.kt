@@ -15,6 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.core.view.WindowCompat
 import com.safiribytes.newsapp.presentation.onboarding.OnboardingScreen
 import com.safiribytes.newsapp.ui.theme.NewsAppTheme
 
@@ -22,6 +23,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //enableEdgeToEdge()
+        WindowCompat.setDecorFitsSystemWindows(window, false)// disable top window i.e. time and network status-bar color
         installSplashScreen()
         setContent {
             NewsAppTheme {
