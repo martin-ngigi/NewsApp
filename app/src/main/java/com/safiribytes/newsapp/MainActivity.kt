@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -17,9 +18,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.lifecycleScope
 import com.safiribytes.newsapp.domain.usecases.AppEntryUseCases
+import com.safiribytes.newsapp.presentation.navgraph.NavGraph
 import com.safiribytes.newsapp.presentation.onboarding.OnboardingScreen
+import com.safiribytes.newsapp.presentation.onboarding.OnboardingViewModel
 import com.safiribytes.newsapp.ui.theme.NewsAppTheme
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -27,27 +31,23 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-
-    @Inject
-    lateinit var appEntryUseCases: AppEntryUseCases
-    private val TAG = "MainActivity"
+    val viewModel by viewModels<MainViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //enableEdgeToEdge()
         WindowCompat.setDecorFitsSystemWindows(window, false)// disable top window i.e. time and network status-bar color
-        installSplashScreen()
-
-        lifecycleScope.launch {
-            appEntryUseCases.readAppEntry().collect{
-                Log.d(TAG, "onCreate: appEntry is ${it}")
+        installSplashScreen().apply {
+            setKeepOnScreenCondition{
+                viewModel.splashCondition
             }
         }
 
         setContent {
             NewsAppTheme {
                 Box(modifier = Modifier.background(MaterialTheme.colorScheme.background)){
-                    OnboardingScreen()
+                    val startDestination = viewModel.startDestination
+                    NavGraph(startDestination = startDestination)
                 }
             }
         }
