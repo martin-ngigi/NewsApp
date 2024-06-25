@@ -3,9 +3,9 @@ package com.safiribytes.newsapp.di
 import android.app.Application
 import com.safiribytes.newsapp.data.manager.LocalUserManagerImpl
 import com.safiribytes.newsapp.domain.manager.LocalUserManager
-import com.safiribytes.newsapp.domain.usecases.AppEntryUseCases
-import com.safiribytes.newsapp.domain.usecases.ReadAppEntry
-import com.safiribytes.newsapp.domain.usecases.SaveAppEntry
+import com.safiribytes.newsapp.domain.usecases.app_entry.AppEntryUseCases
+import com.safiribytes.newsapp.domain.usecases.app_entry.ReadAppEntry
+import com.safiribytes.newsapp.domain.usecases.app_entry.SaveAppEntry
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

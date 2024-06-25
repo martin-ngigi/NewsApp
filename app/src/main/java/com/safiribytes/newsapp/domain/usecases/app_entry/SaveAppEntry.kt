@@ -1,4 +1,4 @@
-package com.safiribytes.newsapp.domain.usecases
+package com.safiribytes.newsapp.domain.usecases.app_entry
 
 import com.safiribytes.newsapp.domain.manager.LocalUserManager
 
