@@ -1,4 +1,4 @@
-package com.safiribytes.newsapp.presentation.onboarding.commnon
+package com.safiribytes.newsapp.presentation.commnon
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement

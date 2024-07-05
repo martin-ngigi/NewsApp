@@ -20,9 +20,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.safiribytes.newsapp.presentation.onboarding.Dimens.MediumPadding2
 import com.safiribytes.newsapp.presentation.onboarding.Dimens.PageIndicatorWidth
-import com.safiribytes.newsapp.presentation.onboarding.commnon.NewsButton
-import com.safiribytes.newsapp.presentation.onboarding.commnon.NewsTextButton
-import com.safiribytes.newsapp.presentation.onboarding.commnon.PageIndicator
+import com.safiribytes.newsapp.presentation.commnon.NewsButton
+import com.safiribytes.newsapp.presentation.commnon.NewsTextButton
+import com.safiribytes.newsapp.presentation.commnon.PageIndicator
 import com.safiribytes.newsapp.presentation.onboarding.components.OnboardingPage
 import kotlinx.coroutines.launch
 
