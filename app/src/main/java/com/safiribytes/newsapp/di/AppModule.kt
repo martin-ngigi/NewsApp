@@ -1,6 +1,10 @@
 package com.safiribytes.newsapp.di
 
 import android.app.Application
+import androidx.room.Room
+import com.safiribytes.newsapp.data.local.NewsDao
+import com.safiribytes.newsapp.data.local.NewsDatabase
+import com.safiribytes.newsapp.data.local.NewsTypeConvertor
 import com.safiribytes.newsapp.data.manager.LocalUserManagerImpl
 import com.safiribytes.newsapp.data.remote.dto.NewsApi
 import com.safiribytes.newsapp.data.respository.NewsRepositoryImpl
@@ -67,4 +71,23 @@ object AppModule {
         )
     }
 
+    @Provides
+    @Singleton
+    fun providesNewsDatabase(
+        application: Application
+    ): NewsDatabase {
+        return  Room.databaseBuilder(
+            context = application,
+            klass = NewsDatabase::class.java,
+            name = Constants.NEWS_DATABASE_NAME
+        ).addTypeConverter(NewsTypeConvertor())
+            .fallbackToDestructiveMigration()
+            .build()
+    }
+
+    @Provides
+    @Singleton
+    fun providesNewsDao(
+        newsDatabase: NewsDatabase
+    ): NewsDao = newsDatabase.newsDao
 }
