@@ -32,7 +32,11 @@ import com.safiribytes.newsapp.presentation.onboarding.Dimens.MediumPadding1
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun HomeScreen(articles: LazyPagingItems<Article>, navigate: (String) -> Unit) {
+fun HomeScreen(
+    articles: LazyPagingItems<Article>,
+    navigateToSearch: () -> Unit,
+    navigateToDetails: (Article) -> Unit
+) {
     val titles by remember {
         derivedStateOf {
             if (articles.itemCount > 10) {
@@ -68,14 +72,15 @@ fun HomeScreen(articles: LazyPagingItems<Article>, navigate: (String) -> Unit) {
             readOnly = true,
             onValueChange = {},
             onClick = {
-                navigate(Route.SearchScreen.route)
+                navigateToSearch()
             },
             onSearch = {
 
             }
         )
 
-        Text(text = titles,
+        Text(
+            text = titles,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(start = MediumPadding1)
@@ -90,7 +95,7 @@ fun HomeScreen(articles: LazyPagingItems<Article>, navigate: (String) -> Unit) {
             modifier = Modifier.padding(horizontal = MediumPadding1),
             articles = articles,
             onclick = {
-                navigate(Route.DetailScreen.route)
+                navigateToDetails(it)
             }
         )
     }

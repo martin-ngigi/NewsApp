@@ -58,7 +58,7 @@ fun DetailsScreen(
                     context.startActivity(it)
                 }
             }
-        }, onBookmarkClick = { event(DetailsEvent.SaveArticle) }, onBackClick = navigateUp
+        }, onBookmarkClick = { event(DetailsEvent.UpsertDeleteArticle(article)) }, onBackClick = navigateUp
         )
 
         LazyColumn(

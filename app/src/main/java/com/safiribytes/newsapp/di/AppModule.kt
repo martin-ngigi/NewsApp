@@ -18,6 +18,7 @@ import com.safiribytes.newsapp.domain.usecases.news.GetNews
 import com.safiribytes.newsapp.domain.usecases.news.NewsUseCases
 import com.safiribytes.newsapp.domain.usecases.news.SearchNews
 import com.safiribytes.newsapp.domain.usecases.news.SelectArticle
+import com.safiribytes.newsapp.domain.usecases.news.SelectArticles
 import com.safiribytes.newsapp.domain.usecases.news.UpsertArticle
 import com.safiribytes.newsapp.util.Constants
 import dagger.Module
@@ -60,8 +61,9 @@ object AppModule {
     @Provides
     @Singleton
     fun providesNewsRepository(
-        newsApi: NewsApi
-    ): NewsRepository = NewsRepositoryImpl(newsApi)
+        newsApi: NewsApi,
+        newsDao: NewsDao
+    ): NewsRepository = NewsRepositoryImpl(newsApi, newsDao)
 
     @Provides
     @Singleton
@@ -72,9 +74,10 @@ object AppModule {
         return NewsUseCases(
             getNews = GetNews(newsRepository),
             searchNews = SearchNews(newsRepository),
-            upsertArticle = UpsertArticle(newsDao),
-            deleteArticle = DeleteArticle(newsDao),
-            selectArticles = SelectArticle(newsDao)
+            upsertArticle = UpsertArticle(newsRepository),
+            deleteArticle = DeleteArticle(newsRepository),
+            selectArticles = SelectArticles(newsRepository),
+            selectArticle = SelectArticle(newsRepository)
         )
     }
 

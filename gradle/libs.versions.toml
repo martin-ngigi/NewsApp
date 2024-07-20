@@ -22,6 +22,8 @@ paging-version = "3.3.0"
 room-version = "2.6.1"
 kotlinSerialozer = "2.0.0"
 ksp = "2.0.0-1.0.21"
+#parcelizeVersion = "1.8.21"
+parcelizeVersion = "2.0.0"
 
 
 [libraries]
@@ -61,6 +63,7 @@ room-ktx = { group="androidx.room", name="room-ktx", version.ref = "room-version
 android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlinSerializer = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlinSerialozer" }
+#kotlinParcelize =  { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "parcelizeVersion" }
 kotlinParcelize =  { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
 hiltdagger = { id= "com.google.dagger.hilt.android", version.ref="hilt"}
 ksp = {id="com.google.devtools.ksp", version.ref="ksp"}
